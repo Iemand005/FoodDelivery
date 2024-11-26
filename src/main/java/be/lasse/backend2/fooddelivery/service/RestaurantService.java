@@ -29,4 +29,8 @@ public class RestaurantService {
         return restaurants;
     }
 
+    public Restaurant getRestaurantById(long id) {
+        return restaurantRepository.findById(id).get();
+    }
+
 }

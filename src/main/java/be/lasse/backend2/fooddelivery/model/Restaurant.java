@@ -2,6 +2,7 @@ package be.lasse.backend2.fooddelivery.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -26,5 +27,15 @@ public class Restaurant {
 
     private String kitchenType;
 
+    @OneToMany
+    private
     Set<Dish> dishes;
+
+    public List<Dish> getDishes() {
+        return dishes.stream().toList();
+    }
+
+    public void addDish(Dish dish) {
+        this.dishes.add(dish);
+    }
 }

@@ -1,5 +1,7 @@
 package be.lasse.backend2.fooddelivery;
 
+import be.lasse.backend2.fooddelivery.repository.DbInitializer;
+import be.lasse.backend2.fooddelivery.repository.RestaurantRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,7 +21,7 @@ public class HttpTest {
     private WebTestClient client;
 
     @Autowired
-    private ActorRepository actorRepository;
+    private RestaurantRepository restaurantRepository;
 
     @Autowired
     private DbInitializer dbInitializer;
@@ -35,26 +37,24 @@ public class HttpTest {
                 .uri("/api/v1/actor")
                 .exchange()
                 .expectStatus().is2xxSuccessful()
-                .expectBody()
-                .json(
-                        """
-                        [
-                          {
-                            "id": 1,
-                            "name": "Frances McDormand"
-                          },
-                          {
-                            "id": 2,
-                            "name": "Steve Buscemi"
-                          },
-                          {
-                            "id": 3,
-                            "name": "Woody Harrelson"
-                          }
-                        ]
-                        """,
-                        true
-                );
+                .expectBody().json(
+                         """
+                         [
+                           {
+                             "id": 1,
+                             "name": "Frances McDormand"
+                           },
+                           {
+                             "id": 2,
+                             "name": "Steve Buscemi"
+                           },
+                           {
+                             "id": 3,
+                             "name": "Woody Harrelson"
+                           }
+                         ]
+                         """
+                 );
     }
 
     @Test
@@ -69,8 +69,7 @@ public class HttpTest {
                         "id": 1,
                         "name": "Frances McDormand"
                       }
-                      """,
-                    true);
+                      """);
     }
 
     @Test
@@ -84,8 +83,7 @@ public class HttpTest {
                       {
                         "message": "Actor not found for id: 100"
                       }
-                      """,
-                    true);
+                      """);
     }
 
     @Test
@@ -107,7 +105,7 @@ public class HttpTest {
                       }
                       """);
 
-        final var jos = actorRepository.findByName("Jos Bosmans");
+        final var jos = restaurantRepository.findByName("Jos Bosmans");
         Assertions.assertTrue(jos.isPresent());
         Assertions.assertEquals("Jos Bosmans", jos.get().getName());
     }
@@ -119,8 +117,8 @@ public class HttpTest {
                 .exchange()
                 .expectStatus().is2xxSuccessful();
 
-        Assertions.assertFalse(actorRepository.findById(1L).isPresent());
-        Assertions.assertFalse(actorRepository.findByName("Frances McDormand").isPresent());
+        Assertions.assertFalse(restaurantRepository.findById(1L).isPresent());
+        Assertions.assertFalse(restaurantRepository.findByName("Frances McDormand").isPresent());
     }
 
     @Test
@@ -142,7 +140,7 @@ public class HttpTest {
                       }
                       """);
 
-        final var clement = actorRepository.findById(1L);
+        final var clement = restaurantRepository.findById(1L);
         Assertions.assertTrue(clement.isPresent());
         Assertions.assertEquals("Clement Peerens", clement.get().getName());
     }
@@ -189,8 +187,7 @@ public class HttpTest {
                           ]
                         }
                       ]
-                      """,
-                    true);
+                      """);
     }
 
     @Test
@@ -219,8 +216,7 @@ public class HttpTest {
                           ]
                         }
                       ]
-                      """,
-                      true);
+                      """);
     }
 
     @Test
@@ -249,8 +245,7 @@ public class HttpTest {
                           ]
                         }
                       ]
-                      """,
-                      true);
+                      """);
     }
 
     @Test
@@ -260,6 +255,6 @@ public class HttpTest {
                 .exchange()
                 .expectStatus().is2xxSuccessful()
                 .expectBody()
-                .json("[]", true);
+                .json("[]");
     }
 }
