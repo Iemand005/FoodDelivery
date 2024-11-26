@@ -1,4 +1,4 @@
 package be.lasse.backend2.fooddelivery.controller;
 
-public class RestaurantController {
+public class OrderController {
 }
