@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class AddressEntity {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,9 +16,9 @@ public class AddressEntity {
     private Integer postalCode;
     private String townName;
 
-    protected AddressEntity() {}
+    protected Address() {}
 
-    protected AddressEntity(String street, Integer houseNumber, Integer postalCode, String townName) {
+    protected Address(String street, Integer houseNumber, Integer postalCode, String townName) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.postalCode = postalCode;

@@ -3,7 +3,7 @@ package be.lasse.backend2.fooddelivery.model;
 import jakarta.persistence.*;
 
 @Entity
-public class CustomerEntity {
+public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,13 +16,13 @@ public class CustomerEntity {
 
     @ManyToOne
     @JoinColumn
-    private AddressEntity address;
+    private Address address;
 
     private String phoneNumber;
 
-    protected CustomerEntity() {}
+    protected Customer() {}
 
-    public CustomerEntity(String firstName, String lastName, String email, AddressEntity address, String phoneNumber) {
+    public Customer(String firstName, String lastName, String email, Address address, String phoneNumber) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -46,7 +46,7 @@ public class CustomerEntity {
         return email;
     }
 
-    public AddressEntity getAddress() {
+    public Address getAddress() {
         return address;
     }
 

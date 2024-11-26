@@ -3,9 +3,8 @@ package be.lasse.backend2.fooddelivery.service;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
-import be.lasse.backend2.fooddelivery.model.CustomerEntity;
+import be.lasse.backend2.fooddelivery.model.Customer;
 import be.lasse.backend2.fooddelivery.repository.CustomerRepository;
 
 @Service
@@ -16,11 +15,11 @@ public class CustomerService {
         this.customerRepository = movieRepository;
     }
 
-    public List<CustomerEntity> getAllCustomers() {
+    public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    public void add(CustomerEntity customerEntity) {
-        customerRepository.save(customerEntity);
+    public Customer add(Customer customerEntity) {
+        return customerRepository.save(customerEntity);
     }
 }

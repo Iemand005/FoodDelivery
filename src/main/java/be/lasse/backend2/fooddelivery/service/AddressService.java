@@ -1,6 +1,6 @@
 package be.lasse.backend2.fooddelivery.service;
 
-import be.lasse.backend2.fooddelivery.model.AddressEntity;
+import be.lasse.backend2.fooddelivery.model.Address;
 import be.lasse.backend2.fooddelivery.repository.AddressRepository;
 
 import org.springframework.stereotype.Service;
@@ -17,11 +17,11 @@ public class AddressService {
         this.addressRepository = addressRepository;
     }
 
-    public List<AddressEntity> getAllActors() {
+    public List<Address> getAllActors() {
         return addressRepository.findAll();
     }
 
-    public AddressEntity getAddressById(long id) throws AddressNotFoundException {
+    public Address getAddressById(long id) throws AddressNotFoundException {
         return addressRepository.findById(id).orElseThrow(() -> new AddressNotFoundException(id));
     }
 }

@@ -1,7 +1,5 @@
-package be.ucll.backend2;
+package be.lasse.backend2.fooddelivery;
 
-import be.ucll.backend2.repository.ActorRepository;
-import be.ucll.backend2.repository.DbInitializer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

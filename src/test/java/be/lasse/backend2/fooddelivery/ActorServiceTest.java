@@ -45,7 +45,7 @@ public class ActorServiceTest {
         // Mockito.doReturn(true).when(actorRepository).existsById(1L);
 
         // Call de methode onder test
-        actorService.deleteActor(1L);
+        // actorService.deleteActor(1L);
 
         // Kijk na of de deleteById methode gecalld is
         Mockito.verify(actorRepository).deleteById(1L);
